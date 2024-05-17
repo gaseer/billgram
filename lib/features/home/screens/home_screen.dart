@@ -1,7 +1,8 @@
+import 'package:billgram/core/navigation_service.dart';
+import 'package:billgram/features/users/customer/screens/addCustomer_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/theme.dart';
@@ -73,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                             color: Colors.black, fontWeight: FontWeight.w700),
                       ),
                     ),
-                    addQuickSection(w),
+                    addQuickSection(w, context),
                     Padding(
                       padding: EdgeInsets.only(
                         left: w * .05,
@@ -139,13 +140,17 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Row addQuickSection(double w) {
+  Row addQuickSection(double w, BuildContext context) {
     return Row(
       children: [
-        CustomCircleCard(
-            title: 'Create\nCustomers',
-            w: w,
-            iconPath: 'assets/icons/addCust.svg'),
+        // InkWell(
+        //   onTap: NavigationService.navigateToScreen(
+        //       context: context, screen: matAddCustomerPage()),
+        //   child: CustomCircleCard(
+        //       title: 'Create\nCustomers',
+        //       w: w,
+        //       iconPath: 'assets/icons/addCust.svg'),
+        // ),
         CustomCircleCard(
           title: 'View\nScheme',
           w: w,
