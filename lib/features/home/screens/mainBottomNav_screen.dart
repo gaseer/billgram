@@ -18,7 +18,7 @@ class MainBottomNav extends StatefulWidget {
 
 class _MainBottomNavState extends State<MainBottomNav> {
   final List<Widget> _screens = [
-    AddCustomerPage(),
+    const HomeScreen(),
     UsersScreen(),
     InvoiceScreen(),
     const ProfileScreen()
@@ -31,9 +31,9 @@ class _MainBottomNavState extends State<MainBottomNav> {
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        unselectedFontSize: w * 0.023,
-        selectedFontSize: w * 0.025,
-        iconSize: w * 0.05,
+        unselectedFontSize: w * 0.03,
+        selectedFontSize: w * 0.035,
+        iconSize: w * 0.06,
         backgroundColor: Palette.backgroundColor,
         showUnselectedLabels: true,
         showSelectedLabels: true,
@@ -62,7 +62,7 @@ class _MainBottomNavState extends State<MainBottomNav> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Palette.customColor,
+        selectedItemColor: Palette.primaryColor,
         unselectedItemColor: Colors.grey,
       ),
     );

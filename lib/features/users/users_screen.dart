@@ -1,7 +1,11 @@
 import 'package:billgram/core/theme/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../core/navigation_service.dart';
+import 'customer/screens/addCustomer_screen.dart';
 
 class UsersScreen extends StatelessWidget {
   UsersScreen({super.key});
@@ -22,13 +26,17 @@ class UsersScreen extends StatelessWidget {
               fontFamily: 'Urbanist'),
         ),
         actions: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: w * .06,
-            child: SvgPicture.asset(
-              'assets/icons/addCust.svg',
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
+          GestureDetector(
+            onTap: () => NavigationService.navigateToScreen(
+                context: context, screen: AddCustomerPage()),
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: w * .06,
+              child: SvgPicture.asset(
+                'assets/icons/addCust.svg',
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
+              ),
             ),
           ),
           SizedBox(width: w * .025)

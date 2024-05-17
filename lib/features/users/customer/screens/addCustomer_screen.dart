@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/theme/theme.dart';
 
 class AddCustomerPage extends StatelessWidget {
   AddCustomerPage({super.key});
@@ -14,18 +17,21 @@ class AddCustomerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final screenWidth = mediaQuery.size.width;
+    final w = mediaQuery.size.width;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Customer'),
+        title: Text(
+          'Add Customer',
+          style: Palette.customTextStyle.copyWith(fontWeight: FontWeight.w700),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {},
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+        padding: EdgeInsets.symmetric(horizontal: w * 0.05),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,20 +41,16 @@ class AddCustomerPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Customer Code',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    'Customer Code \nCR568H',
+                    style: Palette.customTextStyle
+                        .copyWith(fontWeight: FontWeight.w700),
                   ),
+                  Spacer(),
                   Text(
-                    'CR568H',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Date',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '12 March, 2024',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    'Date\n12 March, 2024',
+                    style: Palette.customTextStyle
+                        .copyWith(fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.end,
                   ),
                 ],
               ),
@@ -73,54 +75,9 @@ class AddCustomerPage extends StatelessWidget {
                 label: 'Landmark',
                 controller: landmarkController,
               ),
-              DropdownButtonFormField<String>(
-                items: [
-                  DropdownMenuItem(value: 'Area1', child: Text('Area1')),
-                  DropdownMenuItem(value: 'Area2', child: Text('Area2')),
-                ],
-                onChanged: (value) {},
-                decoration: InputDecoration(
-                  labelText: 'Area',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              DropdownButtonFormField<String>(
-                items: [
-                  DropdownMenuItem(
-                      value: 'Panchayth1', child: Text('Panchayth1')),
-                  DropdownMenuItem(
-                      value: 'Panchayth2', child: Text('Panchayth2')),
-                ],
-                onChanged: (value) {},
-                decoration: InputDecoration(
-                  labelText: 'Panchayth',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              DropdownButtonFormField<String>(
-                items: [
-                  DropdownMenuItem(
-                      value: 'District1', child: Text('District1')),
-                  DropdownMenuItem(
-                      value: 'District2', child: Text('District2')),
-                ],
-                onChanged: (value) {},
-                decoration: InputDecoration(
-                  labelText: 'District',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              DropdownButtonFormField<String>(
-                items: [
-                  DropdownMenuItem(value: 'State1', child: Text('State1')),
-                  DropdownMenuItem(value: 'State2', child: Text('State2')),
-                ],
-                onChanged: (value) {},
-                decoration: InputDecoration(
-                  labelText: 'State',
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              CustomDropDown(w: w),
+              CustomDropDown(w: w),
+              CustomDropDown(w: w),
               CustomTextFormField(
                 label: 'Email Address',
                 controller: emailController,
@@ -135,7 +92,7 @@ class AddCustomerPage extends StatelessWidget {
                   onPressed: () {
                     // Submit action
                   },
-                  child: Text('Create Customer'),
+                  child: Text('Create'),
                 ),
               ),
             ],
@@ -146,8 +103,37 @@ class AddCustomerPage extends StatelessWidget {
   }
 }
 
+class CustomDropDown extends StatelessWidget {
+  const CustomDropDown({
+    super.key,
+    required this.w,
+  });
+
+  final double w;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: w * .15,
+      child: DropdownButtonFormField<String>(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        items: [
+          DropdownMenuItem(value: 'Area1', child: Text('Area1')),
+          DropdownMenuItem(value: 'Area2', child: Text('Area2')),
+        ],
+        onChanged: (value) {},
+        decoration: InputDecoration(
+          labelText: 'Area',
+          border: OutlineInputBorder(),
+        ),
+      ),
+    );
+  }
+}
+
 class CustomTextFormField extends StatelessWidget {
   final String label;
+  // final IconData icon;
   final TextEditingController controller;
 
   const CustomTextFormField(
@@ -156,13 +142,49 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(),
+      child: SizedBox(
+        height: w * .125,
+        child: TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(w * 0.03),
+                borderSide:
+                    BorderSide(color: Palette.blackColor, width: w * 0.001),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(w * 0.03),
+                borderSide:
+                    BorderSide(color: Palette.blackColor, width: w * 0.001),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(w * 0.03),
+                borderSide:
+                    BorderSide(color: Palette.blackColor, width: w * 0.001),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(w * 0.03),
+                borderSide:
+                    BorderSide(color: Palette.blackColor, width: w * 0.001),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(w * 0.03),
+                borderSide:
+                    BorderSide(color: Palette.blackColor, width: w * 0.001),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(w * 0.03),
+                borderSide:
+                    BorderSide(color: Palette.blackColor, width: w * 0.001),
+              ),
+              hintText: label,
+              hintStyle: TextStyle(
+                  fontFamily: 'Urbanist',
+                  fontSize: w * 0.038,
+                  color: Palette.blackColor)),
         ),
       ),
     );

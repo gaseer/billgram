@@ -30,12 +30,66 @@ class ProfileScreen extends StatelessWidget {
           profileHeaderSection(w),
           Container(
             margin: EdgeInsets.all(w * .05),
+            padding: EdgeInsets.all(w * .075),
             height: w * .5,
             width: w * .9,
             decoration: BoxDecoration(
+                image: const DecorationImage(
+                    image: AssetImage('assets/profileFigm.png')),
                 // color: Colors.red,
-                borderRadius: BorderRadius.all(Radius.circular(w * .07))),
-            child: Image.asset('assets/profileFigm.png'),
+                borderRadius: BorderRadius.all(Radius.circular(w * .1))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'LEVEL 3',
+                      style: Palette.customTextStyle.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: w * .045,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      'TOTAL ESTIMATED \n296',
+                      style: Palette.customTextStyle.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: w * .032,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      'TOTAL SALES \n87',
+                      style: Palette.customTextStyle.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: w * .032,
+                          color: Colors.white),
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'TARGET \n300',
+                      style: Palette.customTextStyle.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: w * .03,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      'From \n03/24',
+                      style: Palette.customTextStyle.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: w * .03,
+                          color: Colors.white),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
           CustomPaint(
             size: Size(w * 1, 5),
@@ -102,7 +156,7 @@ class ProfileScreen extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: w * .07),
+            SizedBox(height: w * .05),
             const Text('ID : 1212', style: Palette.customTextStyle),
             Text('GASEER MOHAMMED',
                 style: Palette.customTextStyle

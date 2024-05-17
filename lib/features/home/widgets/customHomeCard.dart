@@ -37,7 +37,7 @@ class CustomHomeCard extends StatelessWidget {
                   Text(
                     title,
                     style: Palette.customTextStyle.copyWith(
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                         fontSize: w * .04,
                         color: Colors.black),
                   ),
@@ -45,7 +45,7 @@ class CustomHomeCard extends StatelessWidget {
                     subtitle,
                     style: Palette.customTextStyle.copyWith(
                         fontWeight: FontWeight.w700,
-                        fontSize: w * .025,
+                        fontSize: w * .0275,
                         color: Colors.black),
                   ),
                 ],

@@ -143,14 +143,14 @@ class HomeScreen extends StatelessWidget {
   Row addQuickSection(double w, BuildContext context) {
     return Row(
       children: [
-        // InkWell(
-        //   onTap: NavigationService.navigateToScreen(
-        //       context: context, screen: matAddCustomerPage()),
-        //   child: CustomCircleCard(
-        //       title: 'Create\nCustomers',
-        //       w: w,
-        //       iconPath: 'assets/icons/addCust.svg'),
-        // ),
+        InkWell(
+          onTap: () => NavigationService.navigateToScreen(
+              context: context, screen: AddCustomerPage()),
+          child: CustomCircleCard(
+              title: 'Create\nCustomers',
+              w: w,
+              iconPath: 'assets/icons/addCust.svg'),
+        ),
         CustomCircleCard(
           title: 'View\nScheme',
           w: w,
