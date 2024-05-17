@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class Palette {
   static const TextStyle customTextStyle = TextStyle(
-    fontFamily: 'Urbanist',
-    fontWeight: FontWeight.w500,
-  );
+      fontFamily: 'Urbanist', fontWeight: FontWeight.w500, color: Colors.white);
   static const Color customColor = Color(0xFF8275EF);
   static const Color cardBackgroundColor = Color(0xFFF0F0F0);
   static const Color textColor = Color(0xFF231852);

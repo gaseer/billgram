@@ -13,16 +13,19 @@ class MainBottomNav extends StatefulWidget {
 }
 
 class _MainBottomNavState extends State<MainBottomNav> {
-  final List<Widget> _screens = [const HomeScreen()];
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen()
+  ];
   int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Palette.backgroundColor,
       body: _screens[_currentIndex],
-      // body: HomeScreen(),
       bottomNavigationBar: BottomNavigationBar(
         unselectedFontSize: w * 0.023,
         selectedFontSize: w * 0.025,
@@ -37,20 +40,20 @@ class _MainBottomNavState extends State<MainBottomNav> {
             _currentIndex = index;
           });
         },
-        items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),
             label: 'Home',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.person_2),
             label: 'Users',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.list_alt),
             label: 'Invoice',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.profile_circled),
             label: 'Profile',
           ),
