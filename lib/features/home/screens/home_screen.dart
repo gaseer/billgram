@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: h * .03),
+            SizedBox(height: w * .08),
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -48,11 +48,11 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: h * .03,
+              height: w * .03,
             ),
             customCardSection(),
             SizedBox(
-              height: h * .03,
+              height: w * .03,
             ),
             Expanded(
               child: Container(
@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                       indent: w * .05,
                     ),
                     Container(
-                      height: h * 0.22,
+                      height: w * 0.4,
                       // color: Colors.white,
                       child: LineChart(
                         LineChartData(

@@ -1,3 +1,4 @@
+import 'package:billgram/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
-    return const MaterialApp(
+    return MaterialApp(
+      theme: Palette.lightModeAppTheme,
       debugShowCheckedModeBanner: false,
-      home: MainBottomNav(),
+      home: const MainBottomNav(),
     );
   }
 }

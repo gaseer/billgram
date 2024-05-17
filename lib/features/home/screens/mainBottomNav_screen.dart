@@ -1,3 +1,6 @@
+import 'package:billgram/features/invoice/invoice_screen.dart';
+import 'package:billgram/features/profile/profile_screen.dart';
+import 'package:billgram/features/users/users_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +18,9 @@ class MainBottomNav extends StatefulWidget {
 class _MainBottomNavState extends State<MainBottomNav> {
   final List<Widget> _screens = [
     const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen()
+    UsersScreen(),
+    InvoiceScreen(),
+    const ProfileScreen()
   ];
   int _currentIndex = 0;
 

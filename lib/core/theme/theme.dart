@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Palette {
-  static const TextStyle customTextStyle = TextStyle(
-      fontFamily: 'Urbanist', fontWeight: FontWeight.w500, color: Colors.white);
+  static const TextStyle customTextStyle =
+      TextStyle(fontFamily: 'Urbanist', fontWeight: FontWeight.w500);
   static const Color customColor = Color(0xFF8275EF);
   static const Color cardBackgroundColor = Color(0xFFF0F0F0);
   static const Color textColor = Color(0xFF231852);
@@ -11,7 +11,7 @@ class Palette {
   static const backgroundColor = Color(0xFFF6F6F6);
   static const cardColor = Color.fromRGBO(233, 236, 239, 1.0);
   static const appBarColor = Colors.white;
-  static const buttonColor = Color(0xFFC52127);
+  static const buttonColor = Color(0xFF2231D2);
   static const borderColor = Color.fromRGBO(33, 37, 41, 1.0);
   // static const textColor = Colors.black;
   static const blackColor = Colors.black;
@@ -25,7 +25,6 @@ class Palette {
   static var lightModeAppTheme = ThemeData.light(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: backgroundColor,
     appBarTheme: const AppBarTheme(
-      centerTitle: true,
       color: backgroundColor,
       // iconTheme: IconThemeData(color: appBarIconColor),
       titleTextStyle: TextStyle(
