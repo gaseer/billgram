@@ -1,6 +1,7 @@
 import 'package:billgram/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../home/screens/mainBottomNav_screen.dart';
 import '../repository/auth_repository.dart';
@@ -13,23 +14,10 @@ class LoginScreen extends ConsumerWidget {
     final authState = ref.watch(authProvider);
     final authNotifier = ref.read(authProvider.notifier);
 
-    // if (authState.isAuthenticated) {
-    //   WidgetsBinding.instance.addPostFrameCallback((_) {
-    //     Navigator.of(context).pushReplacement(
-    //       MaterialPageRoute(builder: (context) => const MainBottomNav()),
-    //     );
-    //   });
-    // }
+    final w = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Palette.backgroundColor,
-      appBar: AppBar(
-        title: const Text(
-          'Login',
-          style: Palette.customTextStyle,
-        ),
-        centerTitle: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -41,15 +29,50 @@ class LoginScreen extends ConsumerWidget {
               else
                 Column(
                   children: [
+                    SizedBox(
+                        height: w * .325,
+                        child: SvgPicture.asset('assets/icons/logo.svg')),
+                    SizedBox(
+                      height: w * .2,
+                    ),
                     Text(
                       'YOU ARE : ${authState.statusMessage}',
                       style: Palette.customTextStyle,
                     ),
                     const SizedBox(height: 20),
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.login),
-                      label: const Text('GO'),
-                      onPressed: authNotifier.authenticate,
+                    GestureDetector(
+                      onTap: authNotifier.authenticate,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                        decoration: BoxDecoration(
+                          color: Palette.primaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                          border: Border.all(
+                            color: Colors.blueAccent,
+                            width: 2,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.login, color: Colors.white),
+                            SizedBox(width: 10),
+                            Text('Authenticate',
+                                style: Palette.customTextStyle.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700)),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
