@@ -21,6 +21,9 @@ dependencies:
   flutter_riverpod: ^2.5.1
   flutter_svg: ^2.0.10+1
   fl_chart: ^0.68.0
+  rive: ^0.13.4
+  local_auth: ^2.2.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:

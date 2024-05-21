@@ -1,10 +1,15 @@
+import 'package:billgram/core/navigation_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/theme/appTheme_widgets.dart';
 import '../../core/theme/theme.dart';
+import '../../main.dart';
+import '../auth/repository/auth_repository.dart';
+import '../auth/screens/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -106,10 +111,19 @@ class ProfileScreen extends StatelessWidget {
             size: Size(w * 1, 5),
             painter: DottedDivider(),
           ),
-          bottomRowTile(
-              w: w,
-              title: 'Logout',
-              icon: CupertinoIcons.arrow_right_arrow_left_square),
+          Consumer(builder: (context, ref, child) {
+            final authNotifier = ref.read(authProvider.notifier);
+
+            return bottomRowTile(
+                onTap: () {
+                  authNotifier.logout();
+                  NavigationService.navigateRemoveUntil(
+                      context: context, screen: LoginScreen());
+                },
+                w: w,
+                title: 'Logout',
+                icon: CupertinoIcons.arrow_right_arrow_left_square);
+          }),
           CustomPaint(
             size: Size(w * 1, 5),
             painter: DottedDivider(),
@@ -119,32 +133,38 @@ class ProfileScreen extends StatelessWidget {
     ));
   }
 
-  Padding bottomRowTile(
-      {required double w, required String title, required IconData icon}) {
-    return Padding(
-      padding: EdgeInsets.only(
-          top: w * .03, right: w * .07, left: w * .075, bottom: w * .05),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(
-            icon,
-            size: w * .065,
-            color: Colors.black87,
-          ),
-          SizedBox(width: w * .03),
-          Text(
-            title,
-            style: Palette.customTextStyle
-                .copyWith(fontWeight: FontWeight.bold, color: Colors.black87),
-          ),
-          const Spacer(),
-          Icon(
-            CupertinoIcons.right_chevron,
-            size: w * .05,
-            color: Colors.black54,
-          )
-        ],
+  GestureDetector bottomRowTile(
+      {required double w,
+      required String title,
+      required IconData icon,
+      void Function()? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.only(
+            top: w * .03, right: w * .07, left: w * .075, bottom: w * .05),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              icon,
+              size: w * .065,
+              color: Colors.black87,
+            ),
+            SizedBox(width: w * .03),
+            Text(
+              title,
+              style: Palette.customTextStyle
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.black87),
+            ),
+            const Spacer(),
+            Icon(
+              CupertinoIcons.right_chevron,
+              size: w * .05,
+              color: Colors.black54,
+            )
+          ],
+        ),
       ),
     );
   }
