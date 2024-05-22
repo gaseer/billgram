@@ -1,16 +1,11 @@
-import 'package:billgram/core/navigation_service.dart';
+import 'package:billgram/core/constants/appConstants.dart';
 import 'package:billgram/features/auth/controller/auth_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../core/theme/appTheme_widgets.dart';
 import '../../core/theme/theme.dart';
-import '../../main.dart';
-import '../auth/repository/auth_repository.dart';
-import '../auth/screens/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -41,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
             width: w * .9,
             decoration: BoxDecoration(
                 image: const DecorationImage(
-                    image: AssetImage('assets/profileFigm.png')),
+                    image: AssetImage(AppConstants.profileCard)),
                 // color: Colors.red,
                 borderRadius: BorderRadius.all(Radius.circular(w * .1))),
             child: Row(
@@ -206,7 +201,7 @@ class ProfileScreen extends StatelessWidget {
         CircleAvatar(
           radius: 35,
           child: Image.asset(
-            'assets/icons/staticProfile.png',
+            AppConstants.staticProfile,
             fit: BoxFit.contain,
           ),
         ),
