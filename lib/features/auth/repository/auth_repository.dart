@@ -1,85 +1,55 @@
+import 'package:billgram/core/error_handling/type_defs.dart';
+import 'package:billgram/core/navigation_service.dart';
+import 'package:billgram/features/home/screens/mainBottomNav_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final authProvider = StateNotifierProvider<AuthNotifier, AuthModel>(
-  (ref) => AuthNotifier(),
-);
+import '../../../core/error_handling/failure.dart';
 
-class AuthNotifier extends StateNotifier<AuthModel> {
-  AuthNotifier()
-      : super(AuthModel(
-          isAuthenticated: false,
-          isAuthenticating: false,
-          statusMessage: 'Not Authorized',
-        ));
+final authRepositoryProvider =
+    Provider<AuthRepository>((ref) => AuthRepository());
 
-  final LocalAuthentication auth = LocalAuthentication();
-
-  Future<void> authenticate() async {
+class AuthRepository {
+  FutureVoid authenticate(BuildContext context) async {
     try {
-      state = state.copyWith(
-          isAuthenticating: true, statusMessage: 'Authenticating');
-      bool authenticated = await auth.authenticate(
+      bool authenticated = await LocalAuthentication().authenticate(
         localizedReason: 'Please authenticate to continue',
         options: const AuthenticationOptions(stickyAuth: true),
       );
       if (authenticated) {
         await _saveAuthState(true);
-        state = state.copyWith(
-            isAuthenticated: true,
-            isAuthenticating: false,
-            statusMessage: 'Authorized');
-      } else {
-        state = state.copyWith(
-            isAuthenticated: false,
-            isAuthenticating: false,
-            statusMessage: 'Not Authorized');
       }
+      return right(null);
     } catch (e) {
-      state = state.copyWith(
-          isAuthenticating: false, statusMessage: 'Error - ${e.toString()}');
+      return left(Failure(errMSg: e.toString()));
     }
   }
 
-  Future<void> _saveAuthState(bool isAuthenticated) async {
+  FutureVoid _saveAuthState(bool isAuthenticated) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isAuthenticated', isAuthenticated);
+    return right(null);
   }
 
-  Future<void> loadAuthState() async {
-    final prefs = await SharedPreferences.getInstance();
-    bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
-    state = state.copyWith(isAuthenticated: isAuthenticated);
+  FutureEither<bool> loadAuthState() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
+      return right(isAuthenticated);
+    } catch (e) {
+      return left(Failure(errMSg: e.toString()));
+    }
   }
 
-  Future<void> logout() async {
-    await _saveAuthState(false);
-    state =
-        state.copyWith(isAuthenticated: false, statusMessage: 'Not Authorized');
-  }
-}
-
-class AuthModel {
-  final bool isAuthenticated;
-  final bool isAuthenticating;
-  final String statusMessage;
-
-  AuthModel({
-    required this.isAuthenticated,
-    required this.isAuthenticating,
-    required this.statusMessage,
-  });
-
-  AuthModel copyWith({
-    bool? isAuthenticated,
-    bool? isAuthenticating,
-    String? statusMessage,
-  }) {
-    return AuthModel(
-      isAuthenticated: isAuthenticated ?? this.isAuthenticated,
-      isAuthenticating: isAuthenticating ?? this.isAuthenticating,
-      statusMessage: statusMessage ?? this.statusMessage,
-    );
+  FutureVoid logout() async {
+    try {
+      await _saveAuthState(false);
+      return right(null);
+    } catch (e) {
+      return left(Failure(errMSg: e.toString()));
+    }
   }
 }

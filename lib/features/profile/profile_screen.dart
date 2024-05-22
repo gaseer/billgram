@@ -1,4 +1,5 @@
 import 'package:billgram/core/navigation_service.dart';
+import 'package:billgram/features/auth/controller/auth_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -112,14 +113,10 @@ class ProfileScreen extends StatelessWidget {
             painter: DottedDivider(),
           ),
           Consumer(builder: (context, ref, child) {
-            final authNotifier = ref.read(authProvider.notifier);
-
             return bottomRowTile(
-                onTap: () {
-                  authNotifier.logout();
-                  NavigationService.navigateRemoveUntil(
-                      context: context, screen: LoginScreen());
-                },
+                onTap: () => ref
+                    .read(authControllerProvider.notifier)
+                    .logout(context: context),
                 w: w,
                 title: 'Logout',
                 icon: CupertinoIcons.arrow_right_arrow_left_square);

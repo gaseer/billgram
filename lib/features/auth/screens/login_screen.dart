@@ -1,50 +1,56 @@
 import 'package:billgram/core/theme/theme.dart';
+import 'package:billgram/core/utilities/loader.dart';
+import 'package:billgram/features/auth/controller/auth_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../home/screens/mainBottomNav_screen.dart';
-import '../repository/auth_repository.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authProvider);
-    final authNotifier = ref.read(authProvider.notifier);
-
     final w = MediaQuery.of(context).size.width;
-
+    final isLoading = ref.watch(authControllerProvider);
     return Scaffold(
       backgroundColor: Palette.backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (authState.isAuthenticating)
-                const CircularProgressIndicator()
-              else
-                Column(
+        padding: EdgeInsets.all(w * .05),
+        child: isLoading
+            ? const Loader()
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                        height: w * .325,
-                        child: SvgPicture.asset('assets/icons/logo.svg')),
-                    SizedBox(
-                      height: w * .2,
+                    AnimatedContainer(
+                      height: w * .35,
+                      duration: const Duration(milliseconds: 2000),
+                      curve: Curves.easeInOut,
+                      child: AnimatedOpacity(
+                        opacity: true ? 1 : 0,
+                        duration: Duration(milliseconds: 2000),
+                        child: SvgPicture.asset('assets/icons/logo.svg'),
+                      ),
                     ),
-                    Text(
-                      'YOU ARE : ${authState.statusMessage}',
+                    SizedBox(height: w * .05),
+                    const Text(
+                      'GRAMBOO SALES ESTIMATION',
                       style: Palette.customTextStyle,
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: w * .1),
+                    const Text(
+                      'USE LOCAL AUTHENTICATION ',
+                      style: Palette.customTextStyle,
+                    ),
+                    SizedBox(height: w * .05),
                     GestureDetector(
-                      onTap: authNotifier.authenticate,
+                      onTap: () => ref
+                          .read(authControllerProvider.notifier)
+                          .authenticate(context: context),
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                        padding: EdgeInsets.symmetric(
+                            vertical: w * .04, horizontal: w * .06),
                         decoration: BoxDecoration(
                           color: Palette.primaryColor,
                           borderRadius: BorderRadius.circular(10),
@@ -64,8 +70,8 @@ class LoginScreen extends ConsumerWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.login, color: Colors.white),
-                            SizedBox(width: 10),
+                            const Icon(Icons.login, color: Colors.white),
+                            SizedBox(width: w * .025),
                             Text('Authenticate',
                                 style: Palette.customTextStyle.copyWith(
                                     color: Colors.white,
@@ -76,9 +82,7 @@ class LoginScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-            ],
-          ),
-        ),
+              ),
       ),
     );
   }
