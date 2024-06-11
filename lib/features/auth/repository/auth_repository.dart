@@ -1,13 +1,11 @@
 import 'package:billgram/core/error_handling/type_defs.dart';
-import 'package:billgram/core/navigation_service.dart';
-import 'package:billgram/features/home/screens/mainBottomNav_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/error_handling/failure.dart';
+import '../../../../../core/error_handling/failure.dart';
 
 final authRepositoryProvider =
     Provider<AuthRepository>((ref) => AuthRepository());

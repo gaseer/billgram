@@ -1,43 +1,62 @@
+import 'package:billgram/core/theme/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../core/theme/theme.dart';
+import '../../../../core/navigation_service.dart';
+import 'customer/screens/addCustomer_SE.dart';
 
-class InvoiceScreen extends StatelessWidget {
-  InvoiceScreen({super.key});
+class UsersScreenSE extends StatelessWidget {
+  UsersScreenSE({super.key});
+
   final searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
-    return SafeArea(
-        child: Scaffold(
+    final h = MediaQuery.of(context).size.height;
+    return Scaffold(
       backgroundColor: Palette.backgroundColor,
       appBar: AppBar(
         title: Text(
-          'Invoices',
+          'Customers',
           style: TextStyle(
               fontSize: w * .05,
               fontWeight: FontWeight.w600,
               fontFamily: 'Urbanist'),
         ),
+        actions: [
+          GestureDetector(
+            onTap: () => NavigationService.navigateToScreen(
+                context: context, screen: AddCustomerSE()),
+            child: SvgPicture.asset(
+              'assets/icons/addCust.svg',
+              fit: BoxFit.contain,
+              width: w * 0.05,
+              alignment: Alignment.center,
+            ),
+          ),
+          SizedBox(width: w * .04)
+        ],
       ),
       body: Column(
         children: [
-          SizedBox(height: w * .05),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: w * 0.15,
-                width: w * 0.7,
-                child: TextFormField(
-                  controller: searchController,
-                  decoration: InputDecoration(
+          SizedBox(height: h * .01),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: w * 0.036),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  height: h * 0.06,
+                  width: w * 0.76,
+                  child: TextFormField(
+                    controller: searchController,
+                    decoration: InputDecoration(
                       prefixIcon: Icon(
                         CupertinoIcons.search,
-                        size: w * 0.07,
+                        size: w * 0.05,
                         color: Colors.black54,
                       ),
                       border: OutlineInputBorder(
@@ -70,57 +89,77 @@ class InvoiceScreen extends StatelessWidget {
                         borderSide: BorderSide(
                             color: Palette.blackColor, width: w * 0.001),
                       ),
-                      hintText: "Search",
-                      hintStyle: TextStyle(
+                      labelText: "Search",
+                      labelStyle: TextStyle(
                           fontFamily: 'Urbanist',
-                          fontSize: w * 0.038,
-                          color: Palette.blackColor)),
+                          fontSize: w * 0.036,
+                          color: Palette.blackColor),
+                    ),
+                    style: TextStyle(
+                        fontFamily: 'Urbanist',
+                        fontSize: w * 0.036,
+                        color: Palette.blackColor),
+                  ),
                 ),
-              ),
-              Container(
-                  height: w * 0.15,
-                  width: w * 0.16,
-                  padding: EdgeInsets.all(10),
+                Container(
+                  height: h * 0.06,
+                  width: w * 0.13,
+                  padding: EdgeInsets.all(w * 0.036),
                   decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.circular(w * 0.03),
                     border: Border.all(color: Colors.black, width: w * 0.001),
                   ),
                   child: SvgPicture.asset(
-                    'assets/icons/slider-vertical.svg',
-                    fit: BoxFit.contain,
-                    alignment: Alignment.center,
-                  )),
-            ],
+                    'assets/icons/Filter.svg',
+                  ),
+                ),
+              ],
+            ),
           ),
-          SizedBox(height: w * .05),
+          SizedBox(height: h * .02),
           ListTile(
             title: Text(
-              'Invoice No',
+              'Shahul Hakeem',
               style: Palette.customTextStyle.copyWith(
                   fontSize: w * .035,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
-              '12 Sep 2023 \nCustomer : Rahul Ramesh',
+              '+9302930300',
               style: Palette.customTextStyle
                   .copyWith(color: Colors.black, fontSize: w * .025),
             ),
             leading: CircleAvatar(
-              child: SvgPicture.asset('assets/icons/rate.svg'),
+              radius: w * 0.05,
+              backgroundImage: const AssetImage(
+                'assets/icons/staticProfile.png',
+              ),
             ),
-            trailing: Text(
-              'Amount \n₹ 23000/-',
-              style: Palette.customTextStyle.copyWith(
+            trailing: Container(
+              height: h * .04,
+              width: w * .18,
+              decoration: BoxDecoration(
+                color: Palette.primaryColor,
+                border: Border.all(
                   color: Colors.black,
-                  fontSize: w * .032,
-                  fontWeight: FontWeight.w700),
-              textAlign: TextAlign.end,
+                  width: .5,
+                ),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Center(
+                child: Text(
+                  'View',
+                  style: TextStyle(
+                      fontSize: w * .03,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+              ),
             ),
           ),
         ],
       ),
-    ));
+    );
   }
 }

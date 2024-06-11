@@ -1,8 +1,8 @@
-import 'package:billgram/features/auth/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/theme/theme.dart';
+import 'features/salesEstimation/features/home/screens/mainBottomNav_SE.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -13,11 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     return MaterialApp(
       theme: Palette.lightModeAppTheme,
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const MainBottomNavSE(),
     );
   }
 }

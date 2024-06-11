@@ -1,13 +1,12 @@
-import 'package:billgram/features/auth/screens/login_screen.dart';
+import 'package:billgram/features/salesEstimation/features/home/screens/mainBottomNav_SE.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../core/constants/appConstants.dart';
-import '../../../core/navigation_service.dart';
-import '../../../core/theme/theme.dart';
-import '../../home/screens/mainBottomNav_screen.dart';
+import '../../../../../core/constants/appConstants.dart';
+import '../../../../../core/navigation_service.dart';
+import '../../../../../core/theme/theme.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -37,7 +36,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       final isLoggedIn = prefs.getBool("isAuthenticated");
       if (isLoggedIn != null && isLoggedIn == true) {
         NavigationService.navigateRemoveUntil(
-            context: context, screen: const MainBottomNav());
+            context: context, screen: const MainBottomNavSE());
       } else {
         NavigationService.navigateRemoveUntil(
             context: context, screen: const LoginScreen());

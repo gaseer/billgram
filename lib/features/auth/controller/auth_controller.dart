@@ -1,13 +1,13 @@
 import 'package:billgram/core/navigation_service.dart';
-import 'package:billgram/features/auth/screens/login_screen.dart';
-import 'package:billgram/features/home/screens/mainBottomNav_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/theme/theme.dart';
-import '../../../core/utilities/custom_snackBar.dart';
+import '../../../../../core/theme/theme.dart';
+import '../../../../../core/utilities/custom_snackBar.dart';
+import '../../salesEstimation/features/home/screens/mainBottomNav_SE.dart';
 import '../repository/auth_repository.dart';
+import '../screens/login_screen.dart';
 
 final authControllerProvider = NotifierProvider<AuthController, bool>(
   () => AuthController(),
@@ -29,7 +29,7 @@ class AuthController extends Notifier<bool> {
             context: context,
             color: Palette.snackBarErrorColor), (r) {
       NavigationService.navigateRemoveUntil(
-          context: context, screen: const MainBottomNav());
+          context: context, screen: const MainBottomNavSE());
       return showSnackBar(
           content: "Authenticated Successfully",
           context: context,

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/appTheme_widgets.dart';
-import '../../../core/theme/theme.dart';
+import '../../../../../core/theme/appTheme_widgets.dart';
+import '../../../../../core/theme/theme.dart';
 
 class CustomHomeCard extends StatelessWidget {
   final String title, subtitle, total, add;
+
   const CustomHomeCard(
       {super.key,
       required this.title,
@@ -15,8 +16,8 @@ class CustomHomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final w = MediaQuery.of(context).size.width;
-    final h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(left: w * .05),
       height: h * .11,

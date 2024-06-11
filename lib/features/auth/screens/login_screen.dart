@@ -1,10 +1,11 @@
 import 'package:billgram/core/theme/theme.dart';
 import 'package:billgram/core/utilities/loader.dart';
-import 'package:billgram/features/auth/controller/auth_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../controller/auth_controller.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});

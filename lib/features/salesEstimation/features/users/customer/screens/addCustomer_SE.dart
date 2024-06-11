@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/theme.dart';
+import '../../../../../../core/theme/theme.dart';
 
-class AddCustomerPage extends StatelessWidget {
-  AddCustomerPage({super.key});
+class AddCustomerSE extends StatelessWidget {
+  AddCustomerSE({super.key});
 
   final customerNameController = TextEditingController();
   final careOfController = TextEditingController();
@@ -16,8 +16,8 @@ class AddCustomerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final w = mediaQuery.size.width;
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +27,9 @@ class AddCustomerPage extends StatelessWidget {
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Padding(
@@ -87,14 +89,29 @@ class AddCustomerPage extends StatelessWidget {
                 controller: panNumberController,
               ),
               SizedBox(height: 20),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Submit action
-                  },
-                  child: Text('Create'),
+              GestureDetector(
+                onTap: () {
+                  // Submit action
+                },
+                child: Container(
+                  height: h * 0.07,
+                  width: w,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(w * 0.04),
+                      color: Palette.primaryColor),
+                  child: Center(
+                    child: Text(
+                      'Create',
+                      style: TextStyle(
+                          fontSize: w * .036,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontFamily: 'Urbanist'),
+                    ),
+                  ),
                 ),
               ),
+              SizedBox(height: h * 0.03)
             ],
           ),
         ),
@@ -133,6 +150,7 @@ class CustomDropDown extends StatelessWidget {
 
 class CustomTextFormField extends StatelessWidget {
   final String label;
+
   // final IconData icon;
   final TextEditingController controller;
 

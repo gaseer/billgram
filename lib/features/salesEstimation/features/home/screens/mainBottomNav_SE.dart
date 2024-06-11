@@ -1,27 +1,25 @@
-import 'package:billgram/features/invoice/invoice_screen.dart';
-import 'package:billgram/features/profile/profile_screen.dart';
-import 'package:billgram/features/users/customer/screens/addCustomer_screen.dart';
-import 'package:billgram/features/users/users_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/theme.dart';
+import '../../../../../core/theme/theme.dart';
+import '../../invoice/invoice_SE.dart';
+import '../../profile/profile_SE.dart';
+import '../../users/users_screenSE.dart';
+import 'home_screenSE.dart';
 
-import 'home_screen.dart';
-
-class MainBottomNav extends StatefulWidget {
-  const MainBottomNav({super.key});
+class MainBottomNavSE extends StatefulWidget {
+  const MainBottomNavSE({super.key});
 
   @override
-  State<MainBottomNav> createState() => _MainBottomNavState();
+  State<MainBottomNavSE> createState() => _MainBottomNavSEState();
 }
 
-class _MainBottomNavState extends State<MainBottomNav> {
+class _MainBottomNavSEState extends State<MainBottomNavSE> {
   final List<Widget> _screens = [
-    const HomeScreen(),
-    UsersScreen(),
-    InvoiceScreen(),
-    const ProfileScreen()
+    const HomeScreenSE(),
+    UsersScreenSE(),
+    InvoiceScreenSE(),
+    const ProfileScreenSE()
   ];
   int _currentIndex = 0;
 
@@ -31,8 +29,8 @@ class _MainBottomNavState extends State<MainBottomNav> {
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        unselectedFontSize: w * 0.03,
-        selectedFontSize: w * 0.035,
+        unselectedFontSize: w * 0.02,
+        selectedFontSize: w * 0.025,
         iconSize: w * 0.06,
         backgroundColor: Palette.backgroundColor,
         showUnselectedLabels: true,
@@ -54,7 +52,7 @@ class _MainBottomNavState extends State<MainBottomNav> {
             label: 'Users',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt),
+            icon: Icon(CupertinoIcons.list_bullet_below_rectangle),
             label: 'Invoice',
           ),
           BottomNavigationBarItem(
