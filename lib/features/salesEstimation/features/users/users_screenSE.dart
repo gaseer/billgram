@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/navigation_service.dart';
-import 'customer/screens/addCustomer_SE.dart';
+import '../customer/screens/addCustomer_SE.dart';
 
 class UsersScreenSE extends StatelessWidget {
   UsersScreenSE({super.key});

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/theme/theme.dart';
+import '../../customer/screens/addCustomer_SE.dart';
 import '../../estimation/screens/createSalesEstimation_SE.dart';
-import '../../users/customer/screens/addCustomer_SE.dart';
 import '../widgets/customCircleCard.dart';
 import '../widgets/customHomeCard.dart';
 

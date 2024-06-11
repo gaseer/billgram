@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/navigation_service.dart';
+import '../../../../core/customCommon/customSearch_common.dart';
 import '../../../../core/theme/theme.dart';
 
 class InvoiceScreenSE extends StatelessWidget {
@@ -36,54 +35,9 @@ class InvoiceScreenSE extends StatelessWidget {
                 SizedBox(
                   height: h * 0.06,
                   width: w * 0.76,
-                  child: TextFormField(
+                  child: CustomSearchField(
                     controller: searchController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        CupertinoIcons.search,
-                        size: w * 0.05,
-                        color: Colors.black54,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(w * 0.03),
-                        borderSide: BorderSide(
-                            color: Palette.blackColor, width: w * 0.001),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(w * 0.03),
-                        borderSide: BorderSide(
-                            color: Palette.blackColor, width: w * 0.001),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(w * 0.03),
-                        borderSide: BorderSide(
-                            color: Palette.blackColor, width: w * 0.001),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(w * 0.03),
-                        borderSide: BorderSide(
-                            color: Palette.blackColor, width: w * 0.001),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(w * 0.03),
-                        borderSide: BorderSide(
-                            color: Palette.blackColor, width: w * 0.001),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(w * 0.03),
-                        borderSide: BorderSide(
-                            color: Palette.blackColor, width: w * 0.001),
-                      ),
-                      labelText: "Search",
-                      labelStyle: TextStyle(
-                          fontFamily: 'Urbanist',
-                          fontSize: w * 0.036,
-                          color: Palette.blackColor),
-                    ),
-                    style: TextStyle(
-                        fontFamily: 'Urbanist',
-                        fontSize: w * 0.036,
-                        color: Palette.blackColor),
+                    labelText: "Search here...",
                   ),
                 ),
                 Container(
