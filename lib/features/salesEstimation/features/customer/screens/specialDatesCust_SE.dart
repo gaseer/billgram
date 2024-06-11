@@ -87,7 +87,7 @@ class _SpecialDatesCustomerSEState extends State<SpecialDatesCustomerSE> {
                   return Padding(
                     padding: EdgeInsets.only(bottom: h * 0.013),
                     child: Container(
-                      height: h * 0.16,
+                      height: h * 0.19,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(w * 0.03),
                         color: Colors.white,

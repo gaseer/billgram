@@ -24,6 +24,7 @@ dependencies:
   rive: ^0.13.4
   local_auth: ^2.2.0
   shared_preferences: ^2.2.3
+  multi_dropdown: ^2.1.4
 
 dev_dependencies:
   flutter_test:
