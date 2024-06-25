@@ -1,7 +1,6 @@
 # billgram
 
 gramboo sales estimation
-
 ## Getting Started
 
 
